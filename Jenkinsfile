@@ -15,6 +15,10 @@ pipeline {
                         returnStdout: true
                     ).trim().tokenize(',')
 
+                    def BRANCH_NAME = sh(
+                            script: "git rev-parse --abbrev-ref HEAD",
+                            returnStdout: true
+                        ).trim()
 
                     slackSend(
                         channel: "${SLACK_CHANNEL}",
@@ -22,7 +26,7 @@ pipeline {
                         :white_check_mark: *Build Success!*
                         *• Job:* `${env.JOB_NAME}`
                         *• Build:* #${env.BUILD_NUMBER}
-                        *• Branch:* `${env.BRANCH_NAME}`
+                        *• Branch:* `${BRANCH_NAME}`
                         *• Author:* ${AUTHOR_NAME} <@${COMMITTER_SLACK_ID}>
                         *• Time:* ${COMMIT_DNT}
                         *• Console:* <${env.BUILD_URL}console|View Logs>
