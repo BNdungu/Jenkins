@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         SLACK_CHANNEL = "jenkins-ci-cd"
+        COMMITTER_SLACK_ID = "U094GJVT6FP"
     }
 
     stages {
@@ -15,7 +16,20 @@ pipeline {
                     ).trim().tokenize(',')
 
 
-                    slackSend channel: "${SLACK_CHANNEL}", message: "Build triggered by ${AUTHOR_NAME} of email ${AUTHOR_EMAIL} at ${COMMIT_DNT}"
+                    slackSend(
+                        channel: "${env.SLACK_CHANNEL}",
+                        message: """
+                        :white_check_mark: *Build Success!*
+                        *• Job:* `${env.JOB_NAME}`
+                        *• Build:* #${env.BUILD_NUMBER}
+                        *• Branch:* `${env.BRANCH_NAME}`
+                        *• Commit:* `${shortCommit}`
+                        *• Author:* ${AUTHOR_NAME} <@${env.COMMITTER_SLACK_ID}>
+                        *• Time:* ${COMMIT_DNT}
+                        *• Console:* <${env.BUILD_URL}console|View Logs>
+                        """
+                    )
+
                 }
             }
         }
