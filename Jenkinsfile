@@ -9,8 +9,12 @@ pipeline {
         stage('Example') {
             steps {
                 script {
-                    def authorName = env.GIT_COMMIT_AUTHOR
-                    slackSend channel: "${SLACK_CHANNEL}", message: "Build triggered by ${authorName}"
+                    AUTHOR_NAME = sh (
+                        script: "git show -s --format='%an' HEAD",
+                        returnStdout: true
+                        ).trim()
+
+                    slackSend channel: "${SLACK_CHANNEL}", message: "Build triggered by ${AUTHOR_NAME}"
                 }
             }
         }
