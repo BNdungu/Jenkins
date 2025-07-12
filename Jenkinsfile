@@ -10,7 +10,7 @@ pipeline {
             steps {
                 script {
                     def (AUTHOR_NAME, AUTHOR_EMAIL, COMMIT_DNT) = sh(
-                        script: "git show -s --format='%an,%ae' HEAD",
+                        script: "git show -s --format='%an,%ae,%ad' HEAD",
                         returnStdout: true
                     ).trim().tokenize(',')
 
