@@ -1,7 +1,7 @@
 pipeline {
     agent any
 
-    environments{
+    environment {
         SLACK_CHANNEL = "jenkins-ci-cd"
     }
 
