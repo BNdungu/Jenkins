@@ -26,13 +26,13 @@ pipeline {
                         slackSend(
                             channel: "${env.SLACK_CHANNEL}",
                             message: """
-:white_check_mark: *Build Success!*
-*• Job:* `${env.JOB_NAME}`
-*• Build:* #${env.BUILD_NUMBER}
-*• Branch:* `${BRANCH_NAME}`
-*• Committer:* ${AUTHOR_NAME} <@${slackID}>
-*• Commit Time:* ${COMMIT_DNT}
-*• Console:* <${env.BUILD_URL}console|View Logs>
+    :white_check_mark: *Build Success!*
+    *• Job:* `${env.JOB_NAME}`
+    *• Build:* #${env.BUILD_NUMBER}
+    *• Branch:* `${BRANCH_NAME}`
+    *• Committer:* ${AUTHOR_NAME} <@${slackID}>
+    *• Commit Time:* ${COMMIT_DNT}
+    *• Console:* <${env.BUILD_URL}console|View Logs>
 """
                         )
                     }
