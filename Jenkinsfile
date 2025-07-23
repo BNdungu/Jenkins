@@ -35,8 +35,9 @@ Hey team, the Jenkins job `${env.JOB_NAME}` just completed build #${env.BUILD_NU
                 }
             }
         }
+    }
 
-        post {
+    post {
     failure {
         script {
             def (AUTHOR_NAME, AUTHOR_EMAIL, COMMIT_DNT) = sh(
@@ -66,5 +67,4 @@ Heads up! The Jenkins job `${env.JOB_NAME}` failed on build #${env.BUILD_NUMBER}
     }
 }
 
-    }
 }
