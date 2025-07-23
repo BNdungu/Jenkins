@@ -26,13 +26,9 @@ pipeline {
                         slackSend(
                             channel: "${env.SLACK_CHANNEL}",
                             message: """
-    :white_check_mark: *Build Success!*
-    *• Job:* `${env.JOB_NAME}`
-    *• Build:* #${env.BUILD_NUMBER}
-    *• Branch:* `${BRANCH_NAME}`
-    *• Committer:* ${AUTHOR_NAME} <@${slackID}>
-    *• Commit Time:* ${COMMIT_DNT}
-    *• Console:* <${env.BUILD_URL}console|View Logs>
+:white_check_mark: *Build Success!*
+
+Hey team, the Jenkins job \`${env.JOB_NAME}\` just completed build #${env.BUILD_NUMBER} successfully. This run was triggered from the \`${BRANCH_NAME}\` branch. The latest commit was made by *${AUTHOR_NAME}* <@${slackID}> on *${COMMIT_DNT}*. You can review the full build logs [here](${env.BUILD_URL}console).
 """
                         )
                     }
