@@ -28,7 +28,7 @@ pipeline {
                             message: """
 :white_check_mark: *Build Success!*
 
-Hey team, the Jenkins job \`${env.JOB_NAME}\` just completed build #${env.BUILD_NUMBER} successfully. This run was triggered from the \`${BRANCH_NAME}\` branch. The latest commit was made by *${AUTHOR_NAME}* <@${slackID}> on *${COMMIT_DNT}*. You can review the full build logs [here](${env.BUILD_URL}console).
+Hey team, the Jenkins job `${env.JOB_NAME}` just completed build #${env.BUILD_NUMBER} successfully. This run was triggered from the `${BRANCH_NAME}` branch. The latest commit was made by *${AUTHOR_NAME}* <@${slackID}> on *${COMMIT_DNT}*. You can review the full build logs <${env.BUILD_URL}console|here>.
 """
                         )
                     }
